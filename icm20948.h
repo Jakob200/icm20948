@@ -329,5 +329,6 @@ options: SAMPLE_MODE_CONTINUOUS or SAMPLE_MODE_CYCLED
 
 icm20948_status_e icm20948_init_dmp_sensor_with_defaults(icm20948_device_t *pdev);
 icm20948_status_e icm20948_seed_quat_from_raw(icm20948_device_t *pdev);
+icm20948_status_e icm20948_seed_quat_direct(icm20948_device_t *pdev, float qw, float qx, float qy, float qz);
 
 #endif /* _ICM_20948_C_H_ */

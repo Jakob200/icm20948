@@ -484,3 +484,17 @@ icm20948_status_e icm20948_seed_quat_from_raw(icm20948_device_t *pdev)
 
     return ICM_20948_STAT_OK;
 }
+
+icm20948_status_e icm20948_seed_quat_direct(icm20948_device_t *pdev, float qw, float qx, float qy, float qz)
+{
+    unsigned char buf[4];
+    pack_q30_be((int32_t)(qw * (float)(1L << 30)), buf);
+    inv_icm20948_write_mems(pdev, Q0_QUAT6, 4, buf);
+    pack_q30_be((int32_t)(qx * (float)(1L << 30)), buf);
+    inv_icm20948_write_mems(pdev, Q1_QUAT6, 4, buf);
+    pack_q30_be((int32_t)(qy * (float)(1L << 30)), buf);
+    inv_icm20948_write_mems(pdev, Q2_QUAT6, 4, buf);
+    pack_q30_be((int32_t)(qz * (float)(1L << 30)), buf);
+    inv_icm20948_write_mems(pdev, Q3_QUAT6, 4, buf);
+    return ICM_20948_STAT_OK;
+}
